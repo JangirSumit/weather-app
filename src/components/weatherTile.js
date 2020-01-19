@@ -59,8 +59,8 @@ class WeatherTile extends Component {
             }}
           >
             <p>
-              <strong>{Math.round(low_temp, 2)}&#176;</strong>/
-              <span>{Math.round(high_temp, 2)}&#176;</span>
+              Temp :<strong>{Math.round(low_temp, 2)}&#176;C</strong>/
+              <span>{Math.round(high_temp, 2)}&#176;C</span>
             </p>
             <p
               style={{
@@ -77,6 +77,10 @@ class WeatherTile extends Component {
             >
               <span>Weather : </span>
               <span>{this.props.weatherDetail.weather[0].description}</span>
+            </p>
+            <p>
+              Wind : {this.props.weatherDetail.wind.speed} km/h,{" "}
+              {this.props.weatherDetail.wind.deg}&#176;
             </p>
           </div>
         </div>

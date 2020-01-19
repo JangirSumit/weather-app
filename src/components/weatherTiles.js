@@ -51,6 +51,10 @@ class WeatherTiles extends Component {
         <h2>
           {this.props.data.city.name},{this.props.data.city.country}
         </h2>
+        <p>
+          Lat: {this.props.data.city.coord.lat}, Long:{" "}
+          {this.props.data.city.coord.lon}
+        </p>
         <div>{tiles}</div>
         <Grid>
           <Row className="show-grid" />

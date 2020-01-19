@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WeatherTiles from "./weatherTiles";
 import TextSearch from "./textSearch";
 import { Jumbotron } from "react-bootstrap";
+import debounce from "../commonFunctions/debounce";
 import "../App.css";
 
 class WeatherMaster extends Component {
@@ -12,9 +13,9 @@ class WeatherMaster extends Component {
     };
   }
 
-  onKeyUp(value) {
+  onKeyUp = debounce(value => {
     this.loadData(value);
-  }
+  }, 400);
 
   loadData(search) {
     let self = this;
