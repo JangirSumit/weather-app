@@ -18,6 +18,11 @@
   color: white;
 }
 
+.header {
+  background-color: #424663;
+  color: silver;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -34,9 +39,10 @@
 .weather-tile {
   display: inline-block;
   margin: 5px;
-  background: #e4e6e9;
+  background: #58566f;
   width: 200px;
   height: 280px;
+  color: white;
 }
 
 @media only screen and (max-width: 480px) {
