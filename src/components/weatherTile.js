@@ -43,7 +43,17 @@ class WeatherTile extends Component {
                 fontSize: "large"
               }}
             >
-              {date.getDate()} {monthNames[date.getMonth()]}
+              {this.props.filterType
+                ? `${
+                    date.getHours() < 10
+                      ? "0" + date.getHours()
+                      : date.getHours()
+                  }:${
+                    date.getMinutes() < 10
+                      ? "0" + date.getMinutes()
+                      : date.getMinutes()
+                  }`
+                : `${date.getDate()} ${monthNames[date.getMonth()]}`}
             </a>
           </p>
           <img

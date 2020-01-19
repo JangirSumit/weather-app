@@ -3,19 +3,27 @@ import WeatherTiles from "./weatherTiles";
 import TextSearch from "./textSearch";
 import { Jumbotron } from "react-bootstrap";
 import debounce from "../commonFunctions/debounce";
+import Filters from "./filters";
 import "../App.css";
 
 class WeatherMaster extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      filterType: 1
     };
   }
 
   onKeyUp = debounce(value => {
     this.loadData(value);
   }, 400);
+
+  handleFilterChange(val) {
+    this.setState({
+      filterType: val
+    });
+  }
 
   loadData(search) {
     let self = this;
@@ -40,15 +48,20 @@ class WeatherMaster extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <Jumbotron className="header">
           <h3>
             <strong>Weather forcast App</strong>
           </h3>
         </Jumbotron>
         <TextSearch onKeyUp={this.onKeyUp.bind(this)} />
-        <WeatherTiles filterText={this.state.search} data={this.state.data} />
-      </div>
+        <Filters handleFilterChange={this.handleFilterChange.bind(this)} />
+        <WeatherTiles
+          filterText={this.state.search}
+          data={this.state.data}
+          filterType={this.state.filterType}
+        />
+      </>
     );
   }
 }
