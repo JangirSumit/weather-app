@@ -33,7 +33,7 @@ class WeatherMaster extends Component {
   loadData() {
     let self = this;
     let url =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
       this.state.search +
       "&apikey=c009a01307a90715e546e205a780c0a6";
 
