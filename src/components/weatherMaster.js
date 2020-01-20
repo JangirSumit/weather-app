@@ -11,26 +11,35 @@ class WeatherMaster extends Component {
     super(props);
     this.state = {
       data: [],
-      filterType: 1
+      filterType: 1,
+      search:""
     };
   }
 
   onKeyUp = debounce(value => {
+    this.setState({
+      search: value
+    });
     this.loadData(value);
-  }, 400);
+  }, 300);
 
   handleFilterChange(val) {
     this.setState({
       filterType: val
     });
+    this.loadData();
   }
 
-  loadData(search) {
+  loadData() {
     let self = this;
     let url =
       "http://api.openweathermap.org/data/2.5/forecast?q=" +
-      search +
+      this.state.search +
       "&apikey=c009a01307a90715e546e205a780c0a6";
+
+      if (this.state.filterType === 2) {
+        url+="&cnt=5"
+      }
 
     fetch(url)
       .then(response => {
@@ -51,8 +60,9 @@ class WeatherMaster extends Component {
       <>
         <Jumbotron className="header">
           <h3>
-            <strong>Weather forcast App</strong>
+            <strong>Indra</strong>
           </h3>
+          <small>Weather forecast</small>
         </Jumbotron>
         <TextSearch onKeyUp={this.onKeyUp.bind(this)} />
         <Filters handleFilterChange={this.handleFilterChange.bind(this)} />

@@ -19,8 +19,11 @@
 }
 
 .header {
-  background-color: #424663;
-  color: silver;
+  background: #007b7a url(content/citybg-map.png) 50% 45% no-repeat;
+  color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .App-link {
@@ -39,14 +42,27 @@
 .weather-tile {
   display: inline-block;
   margin: 5px;
-  background: #58566f;
+  background: #007b7a;
   width: 200px;
   height: 280px;
   color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 @media only screen and (max-width: 480px) {
   .weather-tile {
-    width: 97%;
+    width: 90%;
   }
+  .tiles-container{
+    height: 280px;
+    overflow-y: auto;
+  }
+}
+
+.tiles-container{
+  width: 95%;
+  padding-left: 5%;
+  height: 610px;
+  overflow-y: auto;
 }
