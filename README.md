@@ -1,3 +1,9 @@
+
+![Image1](https://github.com/JangirSumit/weather-app/blob/master/indra1%20-%20Copy.png) 
+![Image3](https://github.com/JangirSumit/weather-app/blob/master/indra3.png)
+![Image2](https://github.com/JangirSumit/weather-app/blob/master/indra2.png)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

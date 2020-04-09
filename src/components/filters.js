@@ -24,8 +24,8 @@ class TextSearch extends Component {
             defaultValue={1}
             onChange={this.handleChange.bind(this)}
           >
-            <ToggleButton value={1}>Hourly (3 hours)</ToggleButton>
-            <ToggleButton value={2}>Day (next 5 days)</ToggleButton>
+            <ToggleButton value={1}>Today</ToggleButton>
+            <ToggleButton value={2}>next 5 days</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
       </center>

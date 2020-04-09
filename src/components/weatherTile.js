@@ -12,9 +12,11 @@ class WeatherTile extends Component {
       ".png";
     let low_temp = parseFloat(this.props.weatherDetail.main.temp_min);
     let high_temp = parseFloat(this.props.weatherDetail.main.temp_max);
+    let feels_like = parseFloat(this.props.weatherDetail.main.feels_like);
 
     low_temp -= kelvin;
     high_temp -= kelvin;
+    feels_like-=kelvin;
 
     const monthNames = [
       "January",
@@ -34,17 +36,10 @@ class WeatherTile extends Component {
     return (
       <Col className="weather-tile">
         <div>
-          <p style={{ paddingTop: "5px" }}>
-            <a
-              href="javascript:void(0);"
-              style={{
-                textDecoration: "none",
-                fontWeight: "bold",
-                fontSize: "large"
-              }}
-            >
-              {this.props.filterType
-                ? `${
+          <p style={{ paddingTop: "5px", fontSize:"17px", fontWeight: "bold" }}>
+              {
+                `${date.getDate()} ${monthNames[date.getMonth()]}`}<br/>
+                {`${
                     date.getHours() < 10
                       ? "0" + date.getHours()
                       : date.getHours()
@@ -52,14 +47,12 @@ class WeatherTile extends Component {
                     date.getMinutes() < 10
                       ? "0" + date.getMinutes()
                       : date.getMinutes()
-                  }`
-                : `${date.getDate()} ${monthNames[date.getMonth()]}`}
-            </a>
+                  }`}
           </p>
           <img
             src={icon}
             alt={this.props.weatherDetail.weather[0].description}
-            style={{ width: "120px", height: "120px", display: "inline-block" }}
+            style={{ width: "120px", height: "100px", display: "inline-block" }}
           />
           <div
             style={{
@@ -71,6 +64,9 @@ class WeatherTile extends Component {
             <p>
               Temp :<strong>{Math.round(low_temp, 2)}&#176;C</strong>/
               <span>{Math.round(high_temp, 2)}&#176;C</span>
+            </p>
+            <p>
+              Feels Like :<strong>{Math.round(feels_like, 2)}&#176;C</strong>
             </p>
             <p
               style={{
