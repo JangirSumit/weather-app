@@ -11,37 +11,49 @@ class WeatherMaster extends Component {
     super(props);
     this.state = {
       data: [],
-      filterType: 1
+      filterType: 1,
     };
   }
 
-  onKeyUp = debounce(value => {
-    this.loadData(value);
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        this.loadData(`lat=${latitude}&lon=${longitude}`);
+        console.log(position);
+      });
+    }
+  }
+
+  onKeyUp = debounce((value) => {
+    this.loadData("q=" + value);
   }, 400);
 
   handleFilterChange(val) {
     this.setState({
-      filterType: val
+      filterType: val,
     });
   }
 
   loadData(search) {
     let self = this;
     let url =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      "http://api.openweathermap.org/data/2.5/forecast?" +
       search +
       "&apikey=c009a01307a90715e546e205a780c0a6";
 
     fetch(url)
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(d => {
+      .then((d) => {
         self.setState({
-          data: d
+          data: d,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error : " + error);
       });
   }
