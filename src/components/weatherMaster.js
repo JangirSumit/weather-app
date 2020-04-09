@@ -12,6 +12,7 @@ class WeatherMaster extends Component {
     this.state = {
       data: [],
       filterType: 1,
+      query: "",
     };
   }
 
@@ -22,7 +23,6 @@ class WeatherMaster extends Component {
         var longitude = position.coords.longitude;
 
         this.loadData(`lat=${latitude}&lon=${longitude}`);
-        console.log(position);
       });
     }
   }
@@ -35,10 +35,10 @@ class WeatherMaster extends Component {
     this.setState({
       filterType: val,
     });
-    this.loadData();
+    this.loadData(this.state.query);
   }
 
-  loadData() {
+  loadData(search) {
     let self = this;
     let url =
       "http://api.openweathermap.org/data/2.5/forecast?" +
@@ -56,6 +56,7 @@ class WeatherMaster extends Component {
       .then((d) => {
         self.setState({
           data: d,
+          query: search,
         });
       })
       .catch((error) => {
@@ -66,12 +67,20 @@ class WeatherMaster extends Component {
   render() {
     return (
       <>
-        <Jumbotron className="header">
-          <h3>
-            <strong>Indra</strong>
-          </h3>
-          <small>Weather forecast</small>
-        </Jumbotron>
+        <div className="header jumbotron">
+          <img
+            src="http://localhost:3000/indra.ico"
+            width="56"
+            alt=""
+            style={{ display: "inline-block", verticalAlign: "unset" }}
+          />
+          <div style={{ display: "inline-block", paddingLeft: "5px" }}>
+            <h3 style={{ marginTop: "0px !imprtant" }}>
+              <strong>Indra</strong>
+            </h3>
+            <small>Weather forecast</small>
+          </div>
+        </div>
         <TextSearch onKeyUp={this.onKeyUp.bind(this)} />
         <Filters handleFilterChange={this.handleFilterChange.bind(this)} />
         <WeatherTiles

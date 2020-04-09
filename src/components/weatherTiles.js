@@ -14,7 +14,7 @@ class WeatherTiles extends Component {
     let date1 =
       date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
-    this.props.data.list.forEach(d => {
+    this.props.data.list.forEach((d) => {
       let dt = new Date(d.dt_txt);
       let date2 = dt.getMonth() + "/" + dt.getDate() + "/" + dt.getFullYear();
 
@@ -33,7 +33,7 @@ class WeatherTiles extends Component {
     let tiles = {};
 
     if (this.props.filterType === 1) {
-      tiles = this.getPerHourData(this.props.data.list).map(weatherDetail => {
+      tiles = this.getPerHourData(this.props.data.list).map((weatherDetail) => {
         return (
           <WeatherTile
             weatherDetail={weatherDetail}
@@ -43,7 +43,7 @@ class WeatherTiles extends Component {
         );
       });
     } else {
-      tiles = this.props.data.list.map(weatherDetail => {
+      tiles = this.props.data.list.map((weatherDetail) => {
         return (
           <WeatherTile weatherDetail={weatherDetail} key={weatherDetail.dt} />
         );
@@ -56,8 +56,8 @@ class WeatherTiles extends Component {
           {this.props.data.city.name},{this.props.data.city.country}
         </h2>
         <p>
-          Lat: {this.props.data.city.coord.lat}, Long:{" "}
-          {this.props.data.city.coord.lon}
+          Lat: <b>{this.props.data.city.coord.lat}</b>, Long:{" "}
+          <b>{this.props.data.city.coord.lon}</b>
         </p>
         <div className="tiles-container">{tiles}</div>
       </div>
